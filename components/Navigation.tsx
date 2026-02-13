@@ -24,7 +24,7 @@ export default function Navigation() {
                     <Link href="/" className="flex items-center space-x-2 group">
                         <span className="text-2xl animate-heartbeat">❤️</span>
                         <span className="text-xl font-bold bg-gradient-to-r from-cardio-primary to-cardio-secondary bg-clip-text text-transparent">
-                            Dr. Cardionix
+                            Heartbeat Audio Analysis
                         </span>
                     </Link>
 
@@ -35,8 +35,8 @@ export default function Navigation() {
                                 key={item.href}
                                 href={item.href}
                                 className={`px-4 py-2 rounded-lg transition-all duration-300 flex items-center space-x-2 ${pathname === item.href
-                                        ? 'bg-cardio-primary text-white glow'
-                                        : 'text-gray-300 hover:bg-white/5 hover:text-white'
+                                    ? 'bg-cardio-primary text-white glow'
+                                    : 'text-gray-300 hover:bg-white/5 hover:text-white'
                                     }`}
                             >
                                 <span>{item.icon}</span>
@@ -84,8 +84,8 @@ export default function Navigation() {
                                 href={item.href}
                                 onClick={() => setIsOpen(false)}
                                 className={`block px-4 py-3 rounded-lg transition-all duration-300 mb-2 ${pathname === item.href
-                                        ? 'bg-cardio-primary text-white glow'
-                                        : 'text-gray-300 hover:bg-white/5 hover:text-white'
+                                    ? 'bg-cardio-primary text-white glow'
+                                    : 'text-gray-300 hover:bg-white/5 hover:text-white'
                                     }`}
                             >
                                 <span className="mr-3">{item.icon}</span>

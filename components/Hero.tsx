@@ -9,7 +9,7 @@ export default function Hero() {
                 {/* Title */}
                 <h1 className="text-5xl md:text-7xl font-bold mb-6">
                     <span className="bg-gradient-to-r from-cardio-primary via-purple-500 to-cardio-secondary bg-clip-text text-transparent">
-                        Dr. Cardionix
+                        Heartbeat Audio Analysis
                     </span>
                     <span className="ml-4 inline-block animate-heartbeat">❤️</span>
                 </h1>
@@ -17,7 +17,7 @@ export default function Hero() {
                 {/* Subtitle */}
                 <div className="glass rounded-2xl p-8 mb-12 glow">
                     <p className="text-xl md:text-2xl text-gray-200 leading-relaxed">
-                        Dr. Cardio Sonix is your <span className="text-cardio-accent font-semibold">AI-powered cardiologist</span> available to everyone at <span className="text-cardio-primary font-semibold">any time</span>!
+                        <span className="text-cardio-accent font-semibold">AI-powered heartbeat analysis</span> available to everyone at <span className="text-cardio-primary font-semibold">any time</span>!
                         Just record the sounds of your heartbeat as indicated in the instructions and send us 🫶🏻
                     </p>
                 </div>

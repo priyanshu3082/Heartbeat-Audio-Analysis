@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import TutorialContent from '@/components/TutorialContent';
 
 export const metadata: Metadata = {
-    title: 'Recording Tutorial | Dr. Cardionix',
+    title: 'Recording Tutorial | Heartbeat Audio Analysis',
     description: 'Learn how to properly record your heartbeat for accurate AI diagnostics.',
 };
 
