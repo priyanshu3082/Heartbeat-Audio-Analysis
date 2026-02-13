@@ -1,6 +1,6 @@
-# Dr. Cardionix - Next.js Edition
+# Heart-beat Audio Analysis
 
-A modern, beautiful Next.js implementation of the Cardio-Sonix AI-powered heart health diagnostics platform.
+A modern, beautiful Next.js application for AI-powered heartbeat audio analysis and cardiovascular health diagnostics.
 
 ## 🌟 Features
 
@@ -48,7 +48,7 @@ The project uses a custom design system with:
 ## 🏗️ Project Structure
 
 ```
-cardio-sonix-nextjs/
+heartbeat-audio-analysis/
 ├── app/                    # Next.js App Router pages
 │   ├── layout.tsx         # Root layout with navigation
 │   ├── page.tsx           # Homepage
