@@ -89,7 +89,6 @@ export default function Hero() {
                         </div>
                     </motion.div>
 
-                    {/* Clinical ECG preview — 3D tilt on pointer */}
                     <div
                         ref={wrapRef}
                         className="relative mx-auto max-w-3xl [perspective:1200px]"
@@ -104,7 +103,6 @@ export default function Hero() {
                             className="relative rounded-3xl p-[1px] bg-gradient-to-br from-slate-300 via-blue-200 to-cyan-200 shadow-2xl dark:from-slate-600 dark:via-blue-900 dark:to-slate-800"
                         >
                             <div className="rounded-[22px] overflow-hidden bg-[#0c1222] ring-1 ring-white/10">
-                                {/* Monitor chrome — authentic labeling */}
                                 <div className="px-4 sm:px-6 py-3 border-b border-white/10 bg-gradient-to-b from-slate-800/90 to-slate-900/80 flex flex-wrap items-center justify-between gap-3">
                                     <div className="text-left space-y-0.5">
                                         <p className="text-[10px] font-mono text-slate-400 tracking-[0.2em] uppercase">
@@ -128,7 +126,6 @@ export default function Hero() {
                                     </div>
                                 </div>
 
-                                {/* ECG paper grid + trace */}
                                 <div
                                     className="relative h-44 sm:h-48"
                                     style={{
@@ -170,7 +167,6 @@ export default function Hero() {
                                 </div>
                             </div>
 
-                            {/* Depth shadow layer */}
                             <div
                                 className="absolute inset-0 -z-10 rounded-3xl bg-blue-600/20 blur-2xl scale-[0.92] opacity-60 dark:opacity-40"
                                 aria-hidden

@@ -46,7 +46,7 @@ export default function DiagnosticsContent() {
                 const file = new File([blob], 'recording.webm', { type: 'audio/webm' });
                 setAudioFile(file);
                 setAudioUrl(URL.createObjectURL(blob));
-                stream.getTracks().forEach(track => track.stop());
+                stream.getTracks().forEach((track) => track.stop());
             };
 
             mediaRecorder.start();
@@ -69,15 +69,13 @@ export default function DiagnosticsContent() {
 
         setIsAnalyzing(true);
 
-        // Simulate AI analysis (in real implementation, this would call an API)
         setTimeout(() => {
-            // Mock prediction
             const mockResult: PredictionResult = {
                 predicted: Math.random() > 0.5 ? 'healthy' : 'abnormal',
                 probability: 0.75 + Math.random() * 0.2,
                 outputs: {
                     healthy: 0.75,
-                    abnormal: 0.20,
+                    abnormal: 0.2,
                     artifact: 0.05,
                 },
             };
@@ -111,17 +109,13 @@ export default function DiagnosticsContent() {
 
     return (
         <div className="container mx-auto px-4 py-16">
-            {/* Header */}
             <div className="text-center mb-12 animate-fadeIn">
-                <h1 className="text-5xl md:text-6xl font-extrabold mb-6 text-slate-900 dark:text-slate-50">
-                    AI Heart Diagnostics
-                </h1>
+                <h1 className="text-5xl md:text-6xl font-extrabold mb-6 text-slate-900 dark:text-slate-50">AI Heart Diagnostics</h1>
                 <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
                     Upload or record your heartbeat for instant AI analysis
                 </p>
             </div>
 
-            {/* Instructions */}
             <div className="bg-white dark:bg-slate-900 rounded-2xl p-8 mb-12 max-w-4xl mx-auto animate-fadeIn border border-blue-100 dark:border-slate-700 shadow-sm">
                 <div className="flex items-start space-x-4">
                     <div className="w-10 h-10 rounded-lg bg-blue-100 dark:bg-slate-800 text-blue-700 dark:text-blue-400 flex items-center justify-center">
@@ -138,9 +132,7 @@ export default function DiagnosticsContent() {
                 </div>
             </div>
 
-            {/* Audio Input Section */}
             <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto mb-12">
-                {/* File Upload */}
                 <div className="bg-white dark:bg-slate-900 rounded-2xl p-8 animate-fadeIn border border-blue-100 dark:border-slate-700 shadow-sm">
                     <h3 className="text-2xl font-bold mb-6 flex items-center text-slate-900 dark:text-slate-50">
                         <FileAudio2 size={24} className="mr-3 text-blue-700 dark:text-blue-400" />
@@ -148,15 +140,11 @@ export default function DiagnosticsContent() {
                     </h3>
 
                     <label className="block">
-                        <div className="border-2 border-dashed border-blue-300 dark:border-slate-600 rounded-xl p-12 text-center cursor-pointer
-                          hover:border-blue-500 dark:hover:border-blue-400 hover:bg-blue-50 dark:hover:bg-slate-800 transition-all duration-300">
-                            <input
-                                type="file"
-                                accept="audio/*"
-                                onChange={handleFileUpload}
-                                className="hidden"
-                            />
-                            <div className="mb-4 flex justify-center text-blue-700 dark:text-blue-400"><FileAudio2 size={44} /></div>
+                        <div className="border-2 border-dashed border-blue-300 dark:border-slate-600 rounded-xl p-12 text-center cursor-pointer hover:border-blue-500 dark:hover:border-blue-400 hover:bg-blue-50 dark:hover:bg-slate-800 transition-all duration-300">
+                            <input type="file" accept="audio/*" onChange={handleFileUpload} className="hidden" />
+                            <div className="mb-4 flex justify-center text-blue-700 dark:text-blue-400">
+                                <FileAudio2 size={44} />
+                            </div>
                             <p className="text-lg font-semibold text-slate-700 dark:text-slate-200">
                                 {audioFile ? audioFile.name : 'Click to upload or drag and drop'}
                             </p>
@@ -165,8 +153,10 @@ export default function DiagnosticsContent() {
                     </label>
                 </div>
 
-                {/* Recording */}
-                <div className="bg-white dark:bg-slate-900 rounded-2xl p-8 animate-fadeIn border border-blue-100 dark:border-slate-700 shadow-sm" style={{ animationDelay: '0.1s' }}>
+                <div
+                    className="bg-white dark:bg-slate-900 rounded-2xl p-8 animate-fadeIn border border-blue-100 dark:border-slate-700 shadow-sm"
+                    style={{ animationDelay: '0.1s' }}
+                >
                     <h3 className="text-2xl font-bold mb-6 flex items-center text-slate-900 dark:text-slate-50">
                         <Mic size={24} className="mr-3 text-blue-700 dark:text-blue-400" />
                         Record Audio
@@ -174,12 +164,13 @@ export default function DiagnosticsContent() {
 
                     <div className="text-center">
                         <button
+                            type="button"
                             onClick={isRecording ? stopRecording : startRecording}
-                            className={`w-32 h-32 rounded-full font-bold text-xl mb-4 mx-auto block text-white
-                       transform transition-all duration-300 hover:scale-110 ${isRecording
+                            className={`w-32 h-32 rounded-full font-bold text-xl mb-4 mx-auto block text-white transform transition-all duration-300 hover:scale-110 ${
+                                isRecording
                                     ? 'bg-red-600 animate-pulse-slow shadow-2xl shadow-red-200'
                                     : 'bg-gradient-to-br from-blue-600 to-cyan-600 hover:shadow-2xl hover:shadow-blue-200'
-                                }`}
+                            }`}
                         >
                             {isRecording ? <CircleStop className="mx-auto" size={40} /> : <Mic className="mx-auto" size={40} />}
                         </button>
@@ -198,7 +189,6 @@ export default function DiagnosticsContent() {
                 </div>
             </div>
 
-            {/* Audio Player */}
             {audioUrl && (
                 <div className="bg-white dark:bg-slate-900 rounded-2xl p-8 max-w-4xl mx-auto mb-12 animate-fadeIn border border-blue-100 dark:border-slate-700 shadow-sm">
                     <h3 className="text-2xl font-bold mb-4 flex items-center text-slate-900 dark:text-slate-50">
@@ -210,15 +200,13 @@ export default function DiagnosticsContent() {
                 </div>
             )}
 
-            {/* Analyze Button */}
             {audioFile && !result && (
                 <div className="text-center mb-12 animate-fadeIn">
                     <button
+                        type="button"
                         onClick={analyzeAudio}
                         disabled={isAnalyzing}
-                        className="px-12 py-6 bg-blue-600 text-white rounded-2xl font-bold text-xl
-                     transform transition-all duration-300 hover:bg-blue-700 hover:shadow-xl
-                     disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                        className="px-12 py-6 bg-blue-600 text-white rounded-2xl font-bold text-xl transform transition-all duration-300 hover:bg-blue-700 hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                     >
                         {isAnalyzing ? (
                             <div className="flex items-center space-x-3">
@@ -232,16 +220,17 @@ export default function DiagnosticsContent() {
                 </div>
             )}
 
-            {/* Results */}
             {result && (
                 <div className="max-w-5xl mx-auto space-y-8 animate-fadeIn">
-                    {/* Main Result */}
                     <div className={`rounded-3xl p-10 border ${getStatusColor(result.predicted)}`}>
                         <div className="text-center mb-8">
                             <div className="flex justify-center mb-4">{getStatusIcon(result.predicted)}</div>
                             <h2 className="text-4xl font-bold mb-4 capitalize text-slate-900 dark:text-slate-50">{result.predicted}</h2>
                             <p className="text-2xl text-slate-600 dark:text-slate-300">
-                                Confidence: <span className="font-bold text-slate-900 dark:text-slate-50">{(result.probability * 100).toFixed(1)}%</span>
+                                Confidence:{' '}
+                                <span className="font-bold text-slate-900 dark:text-slate-50">
+                                    {(result.probability * 100).toFixed(1)}%
+                                </span>
                             </p>
                         </div>
 
@@ -249,27 +238,28 @@ export default function DiagnosticsContent() {
                             <p className="text-lg text-slate-600 dark:text-slate-300 text-center leading-relaxed">
                                 {result.predicted === 'healthy' ? (
                                     <>
-                                        Currently, your heartbeat recording indicates <strong>absence of deviations from the norm</strong> in the cardiovascular system.
-                                        In any case, for a more reliable result, you need to take measurements three times a day for at least 3-5 days.
+                                        Currently, your heartbeat recording indicates <strong>absence of deviations from the norm</strong>{' '}
+                                        in the cardiovascular system. In any case, for a more reliable result, you need to take
+                                        measurements three times a day for at least 3-5 days.
                                     </>
                                 ) : (
                                     <>
-                                        Currently, your heartbeat recording shows <strong>deviations from the norm</strong>, which can be either symptoms of serious heart disease or a temporary phenomenon.
-                                        Please consult with a healthcare professional for proper medical advice.
+                                        Currently, your heartbeat recording shows <strong>deviations from the norm</strong>, which can be
+                                        either symptoms of serious heart disease or a temporary phenomenon. Please consult with a
+                                        healthcare professional for proper medical advice.
                                     </>
                                 )}
                             </p>
 
                             <div className="mt-6 p-4 bg-amber-50 dark:bg-amber-950/40 rounded-lg border border-amber-200 dark:border-amber-800">
                                 <p className="text-sm text-amber-800 dark:text-amber-200 text-center">
-                                    <strong>Important:</strong> It is important to remember that we do not have a medical license and cannot give recommendations or make diagnoses.
-                                    Always consult with qualified healthcare professionals.
+                                    <strong>Important:</strong> It is important to remember that we do not have a medical license and
+                                    cannot give recommendations or make diagnoses. Always consult with qualified healthcare professionals.
                                 </p>
                             </div>
                         </div>
                     </div>
 
-                    {/* Probability Chart */}
                     <div className="bg-white dark:bg-slate-900 rounded-2xl p-8 border border-blue-100 dark:border-slate-700 shadow-sm">
                         <h3 className="text-2xl font-bold mb-6 text-center text-slate-900 dark:text-slate-50">Detailed Analysis</h3>
 
@@ -278,14 +268,19 @@ export default function DiagnosticsContent() {
                                 <div key={category}>
                                     <div className="flex justify-between mb-2">
                                         <span className="font-semibold capitalize text-slate-700 dark:text-slate-200">{category}</span>
-                                        <span className="text-blue-700 dark:text-blue-400 font-semibold">{(probability * 100).toFixed(1)}%</span>
+                                        <span className="text-blue-700 dark:text-blue-400 font-semibold">
+                                            {(probability * 100).toFixed(1)}%
+                                        </span>
                                     </div>
                                     <div className="h-4 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
                                         <div
-                                            className={`h-full bg-gradient-to-r ${category === 'healthy' ? 'from-emerald-500 to-emerald-600' :
-                                                category === 'abnormal' ? 'from-amber-500 to-orange-500' :
-                                                    'from-blue-400 to-blue-500'
-                                                } transition-all duration-1000`}
+                                            className={`h-full bg-gradient-to-r ${
+                                                category === 'healthy'
+                                                    ? 'from-emerald-500 to-emerald-600'
+                                                    : category === 'abnormal'
+                                                      ? 'from-amber-500 to-orange-500'
+                                                      : 'from-blue-400 to-blue-500'
+                                            } transition-all duration-1000`}
                                             style={{ width: `${probability * 100}%` }}
                                         />
                                     </div>
@@ -294,9 +289,9 @@ export default function DiagnosticsContent() {
                         </div>
                     </div>
 
-                    {/* Actions */}
                     <div className="flex justify-center space-x-4">
                         <button
+                            type="button"
                             onClick={() => {
                                 setAudioFile(null);
                                 setAudioUrl(null);
@@ -309,6 +304,7 @@ export default function DiagnosticsContent() {
                         </button>
 
                         <button
+                            type="button"
                             className="px-8 py-4 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 transition-all duration-300 inline-flex items-center gap-2"
                         >
                             <BarChart3 size={16} />

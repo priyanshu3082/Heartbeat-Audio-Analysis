@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import DiagnosticsContent from '@/components/DiagnosticsContent';
+import PageHero from '@/components/PageHero';
 
 export const metadata: Metadata = {
     title: 'AI Diagnostics | Heartbeat Audio Analysis',
@@ -7,5 +8,15 @@ export const metadata: Metadata = {
 };
 
 export default function DiagnosticsPage() {
-    return <DiagnosticsContent />;
+    return (
+        <>
+            <PageHero
+                badge="AI Diagnostics"
+                title="Heart Sound Analysis"
+                subtitle="Upload or record your heartbeat. Our neural network analyzes it for signs of cardiovascular conditions in seconds."
+                accentColor="#FF3366"
+            />
+            <DiagnosticsContent />
+        </>
+    );
 }

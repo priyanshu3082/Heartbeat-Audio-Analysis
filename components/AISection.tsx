@@ -16,7 +16,6 @@ export default function AISection() {
         <section className="py-24 bg-white dark:bg-slate-950 relative overflow-hidden">
             <div className="container mx-auto px-4 relative z-10">
                 <div className="flex flex-col lg:flex-row items-center gap-16">
-                    {/* Visual Side */}
                     <div className="flex-1 w-full">
                         <motion.div
                             initial={{ opacity: 0, x: -20 }}
@@ -52,14 +51,12 @@ export default function AISection() {
                                     </div>
                                 </div>
                             </div>
-                            
-                            {/* Decorative orbs */}
+
                             <div className="absolute -top-10 -left-10 w-40 h-40 bg-blue-200 dark:bg-blue-900/40 rounded-full blur-[80px] opacity-30"></div>
                             <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-indigo-200 dark:bg-indigo-900/40 rounded-full blur-[80px] opacity-30"></div>
                         </motion.div>
                     </div>
 
-                    {/* Content Side */}
                     <div className="flex-1 space-y-8">
                         <div>
                             <h2 className="text-4xl font-extrabold text-slate-900 dark:text-slate-50 mb-6 leading-tight">
@@ -67,17 +64,17 @@ export default function AISection() {
                                 and Artificial Intelligence
                             </h2>
                             <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-                                Classifying heartbeat audio is a complex challenge that requires robust machine learning models. 
-                                Our system processes real-world audio data, filtered for background noise, to identify subtle 
+                                Classifying heartbeat audio is a complex challenge that requires robust machine learning models.
+                                Our system processes real-world audio data, filtered for background noise, to identify subtle
                                 cardiac symptoms that are often difficult for the human ear to distinguish.
                             </p>
                         </div>
 
                         <div className="space-y-4">
                             {[
-                                "Robust classification of non-trivial audio patterns",
-                                "Advanced filtering of environmental background noise",
-                                "High-precision differentiation between cardiac states"
+                                'Robust classification of non-trivial audio patterns',
+                                'Advanced filtering of environmental background noise',
+                                'High-precision differentiation between cardiac states',
                             ].map((item, i) => (
                                 <div key={i} className="flex items-center space-x-3 text-slate-700 dark:text-slate-200 font-medium">
                                     <div className="w-6 h-6 rounded-full bg-blue-100 dark:bg-slate-800 text-blue-600 dark:text-blue-400 flex items-center justify-center">
@@ -89,7 +86,9 @@ export default function AISection() {
                         </div>
 
                         <div className="pt-8 border-t border-slate-100 dark:border-slate-800">
-                            <h3 className="text-sm font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-6">Technological Core</h3>
+                            <h3 className="text-sm font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-6">
+                                Technological Core
+                            </h3>
                             <div className="flex flex-wrap gap-3">
                                 {techStack.map((tech) => {
                                     const Icon = tech.icon;

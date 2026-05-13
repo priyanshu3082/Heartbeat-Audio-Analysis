@@ -34,7 +34,6 @@ export default function Navigation() {
         } border-b border-blue-100 dark:border-slate-800`}>
             <div className="container mx-auto px-4">
                 <div className="flex items-center justify-between">
-                    {/* Logo */}
                     <Link href="/" className="flex items-center space-x-2 group">
                         <div className="bg-blue-600 p-1.5 rounded-lg text-white group-hover:scale-105 transition-transform duration-300">
                             <HeartPulse size={24} />
@@ -86,7 +85,6 @@ export default function Navigation() {
                     </div>
                 </div>
 
-                {/* Mobile Navigation */}
                 <AnimatePresence>
                     {isOpen && (
                         <motion.div
