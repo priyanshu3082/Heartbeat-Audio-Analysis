@@ -1,49 +1,69 @@
 'use client';
 
+import { motion } from 'framer-motion';
+import { Heart, Target, TrendingUp } from 'lucide-react';
+
+const cards = [
+    {
+        title: 'Cardiovascular Analysis',
+        icon: Heart,
+        color: 'text-blue-600 bg-blue-50',
+        darkTone: 'dark:text-blue-300',
+        stats: '9M deaths recorded annually',
+        description: 'Heart disease remains the leading cause of global mortality. Our system helps monitor and identify patterns that require clinical attention, aiming to reduce these statistics through accessible technology.',
+    },
+    {
+        title: 'Diagnostic Motivation',
+        icon: Target,
+        color: 'text-indigo-600 bg-indigo-50',
+        darkTone: 'dark:text-indigo-300',
+        stats: 'Early Detection Saves Lives',
+        description: 'Our mission is to democratize cardiac health monitoring. By making reliable heartbeat classification available to everyone, we enable proactive healthcare and earlier interventions.',
+    },
+];
+
 export default function InfoCards() {
-    const cards = [
-        {
-            title: 'Cardiovascular Diseases',
-            icon: '💔',
-            color: 'from-blue-600 to-blue-800',
-            stats: '9M deaths in 2019',
-            description: 'Heart disease has remained the leading cause of death worldwide for 20 years. However, they have never claimed as many lives as they do today. Deaths from cardiovascular disease have increased by more than 2 million since 2000, reaching nearly 9 million in 2019. Heart disease today accounts for 16% of all deaths worldwide.',
-        },
-        {
-            title: 'Motivation',
-            icon: '🎯',
-            color: 'from-purple-600 to-purple-800',
-            stats: 'Early Detection Saves Lives',
-            description: 'Any method that can help detect signs of cardiovascular disease early can save many lives. Our goal is to make a reliable classifier accessible to every person. We see a future world in which deaths from diseases that can be cured in their early stages will disappear forever. Together we can go beyond human capabilities 🌎',
-        },
-    ];
-
     return (
-        <section className="container mx-auto px-4 py-16">
-            <div className="grid md:grid-cols-2 gap-8">
-                {cards.map((card, index) => (
-                    <div
-                        key={index}
-                        className="glass rounded-2xl p-8 transform transition-all duration-500 hover:scale-105 hover:shadow-2xl animate-fadeIn"
-                        style={{ animationDelay: `${index * 0.2}s` }}
-                    >
-                        {/* Icon & Title */}
-                        <div className="flex items-center space-x-4 mb-4">
-                            <div className={`text-5xl p-4 rounded-xl bg-gradient-to-br ${card.color}`}>
-                                {card.icon}
-                            </div>
-                            <div>
-                                <h2 className="text-2xl font-bold text-cardio-secondary">{card.title}</h2>
-                                <p className="text-sm text-cardio-accent font-semibold">{card.stats}</p>
-                            </div>
-                        </div>
+        <section className="py-20 bg-slate-50 dark:bg-slate-900">
+            <div className="container mx-auto px-4">
+                <div className="grid md:grid-cols-2 gap-8">
+                    {cards.map((card, index) => {
+                        const Icon = card.icon;
+                        return (
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: index * 0.2 }}
+                                className="bg-white dark:bg-slate-900 rounded-3xl p-8 shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-xl transition-shadow duration-300 group"
+                            >
+                                <div className="flex items-start justify-between mb-6">
+                                    <div className="flex items-center space-x-4">
+                                        <div className={`p-4 rounded-2xl ${card.color} dark:bg-slate-800/80 ${card.darkTone} group-hover:scale-110 transition-transform duration-300`}>
+                                            <Icon size={32} />
+                                        </div>
+                                        <div>
+                                            <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-50">{card.title}</h3>
+                                            <p className="text-sm font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-wider">{card.stats}</p>
+                                        </div>
+                                    </div>
+                                </div>
 
-                        {/* Description */}
-                        <div className="glass rounded-xl p-6 bg-cardio-dark/50">
-                            <p className="text-gray-300 leading-relaxed">{card.description}</p>
-                        </div>
-                    </div>
-                ))}
+                                <div className="bg-slate-50 dark:bg-slate-800/50 rounded-2xl p-6 border border-slate-100 dark:border-slate-600">
+                                    <p className="text-slate-600 dark:text-slate-300 leading-relaxed italic">
+                                        "{card.description}"
+                                    </p>
+                                </div>
+                                
+                                <div className="mt-6 flex items-center text-blue-600 dark:text-blue-400 font-bold text-sm group-hover:translate-x-1 transition-transform">
+                                    <span>Learn more about our methodology</span>
+                                    <TrendingUp size={16} className="ml-2" />
+                                </div>
+                            </motion.div>
+                        );
+                    })}
+                </div>
             </div>
         </section>
     );

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef } from 'react';
+import { AlertTriangle, CheckCircle2, CircleStop, FileAudio2, Mic, RotateCcw, BarChart3, ListChecks } from 'lucide-react';
 
 type PredictionResult = {
     predicted: string;
@@ -89,22 +90,22 @@ export default function DiagnosticsContent() {
     const getStatusColor = (predicted: string) => {
         switch (predicted) {
             case 'healthy':
-                return 'from-green-600 to-emerald-600';
+                return 'bg-emerald-50 border-emerald-200 dark:bg-emerald-950/30 dark:border-emerald-800';
             case 'abnormal':
-                return 'from-red-600 to-orange-600';
+                return 'bg-amber-50 border-amber-200 dark:bg-amber-950/30 dark:border-amber-800';
             default:
-                return 'from-gray-600 to-gray-700';
+                return 'bg-slate-50 border-slate-200 dark:bg-slate-900 dark:border-slate-700';
         }
     };
 
     const getStatusIcon = (predicted: string) => {
         switch (predicted) {
             case 'healthy':
-                return '✅';
+                return <CheckCircle2 size={48} className="text-emerald-600 dark:text-emerald-400" />;
             case 'abnormal':
-                return '⚠️';
+                return <AlertTriangle size={48} className="text-amber-600 dark:text-amber-400" />;
             default:
-                return '❓';
+                return <BarChart3 size={48} className="text-slate-500 dark:text-slate-400" />;
         }
     };
 
@@ -112,24 +113,23 @@ export default function DiagnosticsContent() {
         <div className="container mx-auto px-4 py-16">
             {/* Header */}
             <div className="text-center mb-12 animate-fadeIn">
-                <h1 className="text-5xl md:text-6xl font-bold mb-6">
-                    <span className="bg-gradient-to-r from-red-400 to-pink-600 bg-clip-text text-transparent">
-                        AI Heart Diagnostics
-                    </span>
-                    <span className="ml-4">🩺</span>
+                <h1 className="text-5xl md:text-6xl font-extrabold mb-6 text-slate-900 dark:text-slate-50">
+                    AI Heart Diagnostics
                 </h1>
-                <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+                <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
                     Upload or record your heartbeat for instant AI analysis
                 </p>
             </div>
 
             {/* Instructions */}
-            <div className="glass rounded-2xl p-8 mb-12 max-w-4xl mx-auto animate-fadeIn">
+            <div className="bg-white dark:bg-slate-900 rounded-2xl p-8 mb-12 max-w-4xl mx-auto animate-fadeIn border border-blue-100 dark:border-slate-700 shadow-sm">
                 <div className="flex items-start space-x-4">
-                    <span className="text-3xl">📋</span>
+                    <div className="w-10 h-10 rounded-lg bg-blue-100 dark:bg-slate-800 text-blue-700 dark:text-blue-400 flex items-center justify-center">
+                        <ListChecks size={20} />
+                    </div>
                     <div>
-                        <h3 className="text-xl font-semibold text-cardio-accent mb-3">Instructions:</h3>
-                        <ol className="space-y-2 text-gray-300">
+                        <h3 className="text-xl font-semibold text-blue-800 dark:text-blue-300 mb-3">Instructions</h3>
+                        <ol className="space-y-2 text-slate-600 dark:text-slate-300">
                             <li>1. Record your heartbeat for at least 20 seconds</li>
                             <li>2. Or upload a pre-recorded audio file (WAV, MP3, M4A, OGG)</li>
                             <li>3. Make sure the recording is clear with minimal background noise</li>
@@ -141,55 +141,55 @@ export default function DiagnosticsContent() {
             {/* Audio Input Section */}
             <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto mb-12">
                 {/* File Upload */}
-                <div className="glass rounded-2xl p-8 animate-fadeIn">
-                    <h3 className="text-2xl font-bold mb-6 flex items-center">
-                        <span className="text-3xl mr-3">📁</span>
+                <div className="bg-white dark:bg-slate-900 rounded-2xl p-8 animate-fadeIn border border-blue-100 dark:border-slate-700 shadow-sm">
+                    <h3 className="text-2xl font-bold mb-6 flex items-center text-slate-900 dark:text-slate-50">
+                        <FileAudio2 size={24} className="mr-3 text-blue-700 dark:text-blue-400" />
                         Upload Audio File
                     </h3>
 
                     <label className="block">
-                        <div className="border-2 border-dashed border-cardio-secondary/50 rounded-xl p-12 text-center cursor-pointer
-                          hover:border-cardio-secondary hover:bg-cardio-secondary/5 transition-all duration-300">
+                        <div className="border-2 border-dashed border-blue-300 dark:border-slate-600 rounded-xl p-12 text-center cursor-pointer
+                          hover:border-blue-500 dark:hover:border-blue-400 hover:bg-blue-50 dark:hover:bg-slate-800 transition-all duration-300">
                             <input
                                 type="file"
                                 accept="audio/*"
                                 onChange={handleFileUpload}
                                 className="hidden"
                             />
-                            <div className="text-6xl mb-4">📤</div>
-                            <p className="text-lg font-semibold text-gray-300">
+                            <div className="mb-4 flex justify-center text-blue-700 dark:text-blue-400"><FileAudio2 size={44} /></div>
+                            <p className="text-lg font-semibold text-slate-700 dark:text-slate-200">
                                 {audioFile ? audioFile.name : 'Click to upload or drag and drop'}
                             </p>
-                            <p className="text-sm text-gray-500 mt-2">WAV, MP3, M4A, OGG, FLAC</p>
+                            <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">WAV, MP3, M4A, OGG, FLAC</p>
                         </div>
                     </label>
                 </div>
 
                 {/* Recording */}
-                <div className="glass rounded-2xl p-8 animate-fadeIn" style={{ animationDelay: '0.1s' }}>
-                    <h3 className="text-2xl font-bold mb-6 flex items-center">
-                        <span className="text-3xl mr-3">🎙️</span>
+                <div className="bg-white dark:bg-slate-900 rounded-2xl p-8 animate-fadeIn border border-blue-100 dark:border-slate-700 shadow-sm" style={{ animationDelay: '0.1s' }}>
+                    <h3 className="text-2xl font-bold mb-6 flex items-center text-slate-900 dark:text-slate-50">
+                        <Mic size={24} className="mr-3 text-blue-700 dark:text-blue-400" />
                         Record Audio
                     </h3>
 
                     <div className="text-center">
                         <button
                             onClick={isRecording ? stopRecording : startRecording}
-                            className={`w-32 h-32 rounded-full font-bold text-xl mb-4 mx-auto block
+                            className={`w-32 h-32 rounded-full font-bold text-xl mb-4 mx-auto block text-white
                        transform transition-all duration-300 hover:scale-110 ${isRecording
-                                    ? 'bg-red-600 animate-pulse-slow glow shadow-2xl shadow-red-600/50'
-                                    : 'bg-gradient-to-br from-blue-600 to-purple-600 hover:shadow-2xl hover:shadow-blue-600/50'
+                                    ? 'bg-red-600 animate-pulse-slow shadow-2xl shadow-red-200'
+                                    : 'bg-gradient-to-br from-blue-600 to-cyan-600 hover:shadow-2xl hover:shadow-blue-200'
                                 }`}
                         >
-                            {isRecording ? '⏹️' : '🎤'}
+                            {isRecording ? <CircleStop className="mx-auto" size={40} /> : <Mic className="mx-auto" size={40} />}
                         </button>
 
-                        <p className="text-lg font-semibold text-gray-300 mb-2">
+                        <p className="text-lg font-semibold text-slate-700 dark:text-slate-200 mb-2">
                             {isRecording ? 'Recording...' : 'Click to start recording'}
                         </p>
 
                         {isRecording && (
-                            <div className="flex items-center justify-center space-x-2 text-red-400">
+                            <div className="flex items-center justify-center space-x-2 text-red-600">
                                 <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
                                 <span className="text-sm">Recording in progress</span>
                             </div>
@@ -200,13 +200,13 @@ export default function DiagnosticsContent() {
 
             {/* Audio Player */}
             {audioUrl && (
-                <div className="glass rounded-2xl p-8 max-w-4xl mx-auto mb-12 animate-fadeIn">
-                    <h3 className="text-2xl font-bold mb-4 flex items-center">
-                        <span className="text-3xl mr-3">🔊</span>
+                <div className="bg-white dark:bg-slate-900 rounded-2xl p-8 max-w-4xl mx-auto mb-12 animate-fadeIn border border-blue-100 dark:border-slate-700 shadow-sm">
+                    <h3 className="text-2xl font-bold mb-4 flex items-center text-slate-900 dark:text-slate-50">
+                        <FileAudio2 size={24} className="mr-3 text-blue-700 dark:text-blue-400" />
                         Audio Preview
                     </h3>
                     <audio controls src={audioUrl} className="w-full" />
-                    <p className="text-sm text-gray-400 mt-2">Duration should be at least 20 seconds</p>
+                    <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">Duration should be at least 20 seconds</p>
                 </div>
             )}
 
@@ -216,17 +216,17 @@ export default function DiagnosticsContent() {
                     <button
                         onClick={analyzeAudio}
                         disabled={isAnalyzing}
-                        className="px-12 py-6 bg-gradient-to-r from-cardio-primary to-red-600 rounded-2xl font-bold text-xl
-                     transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-cardio-primary/50
+                        className="px-12 py-6 bg-blue-600 text-white rounded-2xl font-bold text-xl
+                     transform transition-all duration-300 hover:bg-blue-700 hover:shadow-xl
                      disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                     >
                         {isAnalyzing ? (
                             <div className="flex items-center space-x-3">
                                 <div className="w-6 h-6 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
-                                <span>Analyzing Heart Sounds... 🫀</span>
+                                <span>Analyzing Heart Sounds...</span>
                             </div>
                         ) : (
-                            <>Analyze Heartbeat 🔍</>
+                            <>Analyze Heartbeat</>
                         )}
                     </button>
                 </div>
@@ -236,17 +236,17 @@ export default function DiagnosticsContent() {
             {result && (
                 <div className="max-w-5xl mx-auto space-y-8 animate-fadeIn">
                     {/* Main Result */}
-                    <div className={`glass rounded-3xl p-10 bg-gradient-to-br ${getStatusColor(result.predicted)} bg-opacity-20 glow`}>
+                    <div className={`rounded-3xl p-10 border ${getStatusColor(result.predicted)}`}>
                         <div className="text-center mb-8">
-                            <div className="text-8xl mb-4">{getStatusIcon(result.predicted)}</div>
-                            <h2 className="text-4xl font-bold mb-4 capitalize">{result.predicted}</h2>
-                            <p className="text-2xl text-gray-300">
-                                Confidence: <span className="font-bold text-white">{(result.probability * 100).toFixed(1)}%</span>
+                            <div className="flex justify-center mb-4">{getStatusIcon(result.predicted)}</div>
+                            <h2 className="text-4xl font-bold mb-4 capitalize text-slate-900 dark:text-slate-50">{result.predicted}</h2>
+                            <p className="text-2xl text-slate-600 dark:text-slate-300">
+                                Confidence: <span className="font-bold text-slate-900 dark:text-slate-50">{(result.probability * 100).toFixed(1)}%</span>
                             </p>
                         </div>
 
-                        <div className="glass rounded-2xl p-6 bg-cardio-dark/50">
-                            <p className="text-lg text-gray-300 text-center leading-relaxed">
+                        <div className="rounded-2xl p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-600">
+                            <p className="text-lg text-slate-600 dark:text-slate-300 text-center leading-relaxed">
                                 {result.predicted === 'healthy' ? (
                                     <>
                                         Currently, your heartbeat recording indicates <strong>absence of deviations from the norm</strong> in the cardiovascular system.
@@ -260,9 +260,9 @@ export default function DiagnosticsContent() {
                                 )}
                             </p>
 
-                            <div className="mt-6 p-4 bg-yellow-900/30 rounded-lg border border-yellow-600/30">
-                                <p className="text-sm text-yellow-200 text-center">
-                                    ⚠️ <strong>Important:</strong> It is important to remember that we do not have a medical license and cannot give recommendations or make diagnoses.
+                            <div className="mt-6 p-4 bg-amber-50 dark:bg-amber-950/40 rounded-lg border border-amber-200 dark:border-amber-800">
+                                <p className="text-sm text-amber-800 dark:text-amber-200 text-center">
+                                    <strong>Important:</strong> It is important to remember that we do not have a medical license and cannot give recommendations or make diagnoses.
                                     Always consult with qualified healthcare professionals.
                                 </p>
                             </div>
@@ -270,21 +270,21 @@ export default function DiagnosticsContent() {
                     </div>
 
                     {/* Probability Chart */}
-                    <div className="glass rounded-2xl p-8">
-                        <h3 className="text-2xl font-bold mb-6 text-center">Detailed Analysis</h3>
+                    <div className="bg-white dark:bg-slate-900 rounded-2xl p-8 border border-blue-100 dark:border-slate-700 shadow-sm">
+                        <h3 className="text-2xl font-bold mb-6 text-center text-slate-900 dark:text-slate-50">Detailed Analysis</h3>
 
                         <div className="space-y-4">
                             {Object.entries(result.outputs).map(([category, probability]) => (
                                 <div key={category}>
                                     <div className="flex justify-between mb-2">
-                                        <span className="font-semibold capitalize">{category}</span>
-                                        <span className="text-cardio-accent">{(probability * 100).toFixed(1)}%</span>
+                                        <span className="font-semibold capitalize text-slate-700 dark:text-slate-200">{category}</span>
+                                        <span className="text-blue-700 dark:text-blue-400 font-semibold">{(probability * 100).toFixed(1)}%</span>
                                     </div>
-                                    <div className="h-4 bg-white/10 rounded-full overflow-hidden">
+                                    <div className="h-4 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
                                         <div
-                                            className={`h-full bg-gradient-to-r ${category === 'healthy' ? 'from-green-500 to-emerald-500' :
-                                                category === 'abnormal' ? 'from-red-500 to-orange-500' :
-                                                    'from-gray-500 to-gray-600'
+                                            className={`h-full bg-gradient-to-r ${category === 'healthy' ? 'from-emerald-500 to-emerald-600' :
+                                                category === 'abnormal' ? 'from-amber-500 to-orange-500' :
+                                                    'from-blue-400 to-blue-500'
                                                 } transition-all duration-1000`}
                                             style={{ width: `${probability * 100}%` }}
                                         />
@@ -302,15 +302,17 @@ export default function DiagnosticsContent() {
                                 setAudioUrl(null);
                                 setResult(null);
                             }}
-                            className="px-8 py-4 glass rounded-xl font-semibold hover:bg-white/5 transition-all duration-300"
+                            className="px-8 py-4 bg-white dark:bg-slate-900 border border-blue-200 dark:border-slate-600 rounded-xl text-blue-700 dark:text-blue-300 font-semibold hover:bg-blue-50 dark:hover:bg-slate-800 transition-all duration-300 inline-flex items-center gap-2"
                         >
-                            🔄 Analyze Another
+                            <RotateCcw size={16} />
+                            Analyze Another
                         </button>
 
                         <button
-                            className="px-8 py-4 bg-cardio-secondary rounded-xl font-semibold hover:bg-cardio-secondary/80 transition-all duration-300"
+                            className="px-8 py-4 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 transition-all duration-300 inline-flex items-center gap-2"
                         >
-                            📊 View History
+                            <BarChart3 size={16} />
+                            View History
                         </button>
                     </div>
                 </div>
